@@ -7,7 +7,8 @@
 ## Build
 `mvn clean install`
 ## Configuration
-`|-+ <tomcat>
+```
+|-+ <tomcat>
   |-+ conf
     |-+ <engine>
       |-+ <hostname>
@@ -16,5 +17,4 @@
         | |-- kea.properties
         | |-- log4j2.xml
         |-- <appName>.xml`
-      
-      
+```
