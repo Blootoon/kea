@@ -8,13 +8,13 @@
 `mvn clean install`
 ## Configuration
 ```
-|-+ <tomcat>
-  |-+ conf
-    |-+ <engine>
-      |-+ <hostname>
-        |-+ <configuration>
+\-+ <tomcat>
+  \-+ conf
+    \-+ <engine>
+      \-+ <hostname>
+        |-+ configuration
         | |-- database.properties
         | |-- kea.properties
-        | |-- log4j2.xml
-        |-- <appName>.xml`
+        | \-- log4j2.xml
+        \-- <appName>.xml
 ```
