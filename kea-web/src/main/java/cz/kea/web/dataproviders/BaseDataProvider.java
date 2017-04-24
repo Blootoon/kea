@@ -16,19 +16,19 @@ import cz.kea.api.model.Identifiable;
 import cz.kea.api.services.BaseService;
 import cz.kea.api.utils.Filter;
 import cz.kea.api.utils.Order;
-import org.apache.log4j.LogMF;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author Jakub Jaros (jakub.jaros@ibacz.eu)
  */
 public abstract class BaseDataProvider<T extends Identifiable<ID>, ID extends Serializable> extends AbstractBackEndDataProvider<T, Map<Filter, Object>> {
 
-    private final Logger LOG = Logger.getLogger(getClass());
+    private final Logger LOG = LogManager.getFormatterLogger(getClass());
 
     @Override
     protected Stream<T> fetchFromBackEnd(Query<T, Map<Filter, Object>> query) {
-        LogMF.trace(LOG, "Fetching from back end.", new Object[]{});
+        LOG.trace("Fetching from back end.");
 
         Optional<Map<Filter, Object>> optionalFilter = query.getFilter();
         Map<Filter, Object> filter = optionalFilter.orElse(Collections.emptyMap());
@@ -42,7 +42,7 @@ public abstract class BaseDataProvider<T extends Identifiable<ID>, ID extends Se
 
     @Override
     protected int sizeInBackEnd(Query<T, Map<Filter, Object>> query) {
-        LogMF.trace(LOG, "Getting size from back end.", new Object[]{});
+        LOG.trace("Getting size from back end.");
 
         Optional<Map<Filter, Object>> optionalFilter = query.getFilter();
         Map<Filter, Object> filter = optionalFilter.orElse(Collections.emptyMap());

@@ -7,15 +7,15 @@
             http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd">
 
     <!--
-        This loads settings from /database-config/database-settings.properties file
+        This loads settings from /database-config/database-default.properties file
         This might be overridden in /WEB-INF/database-config/database-settings-ext.properties file which is
         accessible on filesystem
      -->
     <bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath*:/database-config/database-settings.properties</value>
-                <value>/WEB-INF/database-config/database-settings-ext.properties</value>
+                <value>classpath*:/database-default.properties</value>
+                <value>classpath*:/database.properties</value>
             </list>
         </property>
         <property name="ignoreResourceNotFound" value="true"/>

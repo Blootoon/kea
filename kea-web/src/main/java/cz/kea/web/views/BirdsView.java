@@ -2,7 +2,6 @@ package cz.kea.web.views;
 
 import javax.annotation.PostConstruct;
 
-import com.vaadin.data.provider.GridSortOrderBuilder;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
@@ -10,8 +9,8 @@ import com.vaadin.ui.Grid;
 import com.vaadin.ui.VerticalLayout;
 import cz.kea.api.model.Bird;
 import cz.kea.web.dataproviders.BirdsDataProvider;
-import org.apache.log4j.LogMF;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 
@@ -21,7 +20,7 @@ import org.springframework.context.MessageSource;
 @SpringView(name = BirdsView.VIEW_NAME)
 public class BirdsView extends VerticalLayout implements View {
 
-    private static final Logger LOG = Logger.getLogger(BirdsView.class);
+    private static final Logger LOG = LogManager.getFormatterLogger(BirdsView.class);
 
     public static final String VIEW_NAME = "birds";
 
@@ -56,6 +55,6 @@ public class BirdsView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
-        LogMF.trace(LOG, "In birds view.", new Object[]{});
+        LOG.trace("In birds view.");
     }
 }
