@@ -2,19 +2,18 @@
 ## Requirements
 * Java 8
 * Tomcat 8
-* Oracle Database
 * Maven 3.2+
 ## Build
 `mvn clean install`
 ## Configuration
 ```
-\-+ <tomcat>
-  \-+ conf
-    \-+ <engine>
-      \-+ <hostname>
-        |-+ configuration
-        | |-- database.properties
-        | |-- kea.properties
+\-- <tomcat>
+  \-- conf
+    \-- <engine>
+      \-- <hostname>
+        +-- configuration
+        | +-- database.properties
+        | +-- kea.properties
         | \-- log4j2.xml
         \-- <appName>.xml
 ```
