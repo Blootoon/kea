@@ -1,0 +1,54 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--HSQLDB types-->
+    <property name="int.type" value="integer" dbms="hsqldb"/>
+    <property name="long.type" value="bigint" dbms="hsqldb"/>
+    <property name="short.string.type" value="varchar(64)" dbms="hsqldb"/>
+    <property name="normal.string.type" value="varchar(255)" dbms="hsqldb"/>
+    <property name="long.string.type" value="varchar(4096)" dbms="hsqldb"/>
+    <property name="timestamp" value="timestamp" dbms="hsqldb"/>
+    <property name="boolean.type" value="boolean" dbms="hsqldb"/>
+
+    <!--Postgres types-->
+    <property name="int.type" value="integer" dbms="postgresql"/>
+    <property name="long.type" value="bigint" dbms="postgresql"/>
+    <property name="short.string.type" value="varchar(64)" dbms="postgresql"/>
+    <property name="normal.string.type" value="varchar(255)" dbms="postgresql"/>
+    <property name="long.string.type" value="varchar(4096)" dbms="postgresql"/>
+    <property name="timestamp" value="timestamp" dbms="postgresql"/>
+    <property name="boolean.type" value="boolean" dbms="postgresql"/>
+
+    <!--Oracle types-->
+    <property name="int.type" value="number(10,0)" dbms="oracle"/>
+    <property name="long.type" value="number(19,0)" dbms="oracle"/>
+    <property name="short.string.type" value="varchar2(64 char)" dbms="oracle"/>
+    <property name="normal.string.type" value="varchar2(255 char)" dbms="oracle"/>
+    <property name="long.string.type" value="varchar2(4000 char)" dbms="oracle"/>
+    <property name="timestamp" value="timestamp" dbms="oracle"/>
+    <property name="boolean.type" value="number(1,0)" dbms="oracle"/>
+    <property name="text.type" value="clob(1048576)" dbms="oracle"/>
+
+    <!--SQL Server types-->
+    <property name="int.type" value="int" dbms="mssql"/>
+    <property name="long.type" value="bigint" dbms="mssql"/>
+    <property name="short.string.type" value="varchar(64)" dbms="mssql"/>
+    <property name="normal.string.type" value="varchar(255)" dbms="mssql"/>
+    <property name="long.string.type" value="varchar(4096)" dbms="mssql"/>
+    <property name="timestamp" value="datetime2" dbms="mssql"/>
+    <property name="boolean.type" value="bit" dbms="mssql"/>
+
+    <!--MySQL types-->
+    <property name="int.type" value="int" dbms="mysql"/>
+    <property name="long.type" value="bigint" dbms="mysql"/>
+    <property name="short.string.type" value="varchar(64)" dbms="mysql"/>
+    <property name="normal.string.type" value="varchar(255)" dbms="mysql"/>
+    <property name="long.string.type" value="longtext" dbms="mysql"/>
+    <property name="timestamp" value="timestamp" dbms="mysql"/>
+    <property name="boolean.type" value="tinyint(1)" dbms="mysql"/>
+
+</databaseChangeLog>

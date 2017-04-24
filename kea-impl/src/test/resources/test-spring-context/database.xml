@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <bean id="liquibase" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg>
+            <value>liquibase.integration.spring.SpringLiquibase</value>
+        </constructor-arg>
+    </bean>
+
+    <bean id="propertyPlaceholderConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:test-database-settings.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+    </bean>
+
+    <bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${db.jdbc.driverClassName}"/>
+        <property name="url" value="${db.jdbc.url}"/>
+        <property name="username" value="${db.jdbc.username}"/>
+        <property name="password" value="${db.jdbc.password}"/>
+    </bean>
+
+    <!--Override entityManagerFactory from context to depend on hsqlSchemaCreator -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="persistenceProvider" ref="hibernatePersistence"/>
+        <property name="jpaProperties" ref="jpaProperties" />
+        <property name="packagesToScan" value="cz.kea.impl.entities"/>
+    </bean>
+
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg index="0" ref="dataSource"/>
+    </bean>
+
+</beans>

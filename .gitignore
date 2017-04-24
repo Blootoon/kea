@@ -1,0 +1,12 @@
+classes
+atlassian-ide-plugin.xml
+*_sprite*
+target
+.idea
+*.iml
+*.log
+.settings
+.classpath
+.project
+nbactions.xml
+nb-configuration.xml
