@@ -1,0 +1,6 @@
+<Context>
+    <Resources>
+        <PostResources className="org.apache.catalina.webresources.DirResourceSet" base="${catalina.home}/conf/Catalina/localhost/lib" webAppMount="/WEB-INF/lib" />
+        <PostResources className="org.apache.catalina.webresources.DirResourceSet" base="${catalina.home}/conf/Catalina/localhost/classes" webAppMount="/WEB-INF/classes" />
+    </Resources>
+</Context>
