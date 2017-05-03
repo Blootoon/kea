@@ -1,8 +1,6 @@
 package cz.kea.impl.services;
 
-import cz.kea.api.enums.Genus;
 import cz.kea.api.enums.Sex;
-import cz.kea.api.enums.Species;
 import cz.kea.api.enums.State;
 import cz.kea.api.factories.model.BirdFactory;
 import cz.kea.api.model.Bird;
@@ -38,11 +36,10 @@ public class BirdServiceTest extends AbstractTest {
 
     @Test
     public void testSave() {
-        Bird bird = birdFactory.createBird(Genus.FORPUS, Species.FORPUS_COELESTIS, Sex.MALE, State.ADULT, null, null, null, null, "CZ 15 1234", "Toníček", null, "Poznámka");
+        Bird bird = birdFactory.createBird(null, Sex.MALE, State.ADULT, null, null, null, null, "CZ 15 1234", "Toníček", null, "Poznámka");
         Bird savedBird = birdService.save(bird);
 
-        assertEquals(bird.getGenus(), savedBird.getGenus());
-        assertEquals(bird.getSpecies(), savedBird.getSpecies());
+        assertEquals(bird.getTaxon(), savedBird.getTaxon());
         assertEquals(bird.getSex(), savedBird.getSex());
         assertEquals(bird.getIdentification(), savedBird.getIdentification());
         assertEquals(bird.getName(), savedBird.getName());
@@ -51,7 +48,7 @@ public class BirdServiceTest extends AbstractTest {
 
     @Test
     public void testChangeStateSuccess() {
-        Bird bird = birdFactory.createBird(Genus.FORPUS, Species.FORPUS_COELESTIS, Sex.MALE, State.EGG);
+        Bird bird = birdFactory.createBird(null, Sex.MALE, State.EGG);
         Bird savedBird = birdService.save(bird);
 
         Bird changedStateBird = birdService.changeState(savedBird, State.HATCHED);
@@ -61,7 +58,7 @@ public class BirdServiceTest extends AbstractTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testChangeStateFail() {
-        Bird bird = birdFactory.createBird(Genus.FORPUS, Species.FORPUS_COELESTIS, Sex.MALE, State.EGG);
+        Bird bird = birdFactory.createBird(null, Sex.MALE, State.EGG);
         Bird savedBird = birdService.save(bird);
 
         birdService.changeState(savedBird, State.ADULT);

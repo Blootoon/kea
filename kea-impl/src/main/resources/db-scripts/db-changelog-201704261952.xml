@@ -1,0 +1,95 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <changeSet id="hibernate_sequence" author="jakub.jaros" objectQuotingStrategy="QUOTE_ALL_OBJECTS" dbms="oracle" failOnError="false">
+        <createSequence cycle="false" incrementBy="1" maxValue="9999999999999999999999999999" minValue="1" ordered="false" sequenceName="HIBERNATE_SEQUENCE" startValue="1" />
+    </changeSet>
+
+    <changeSet id="core_tables" author="jakub.jaros" runInTransaction="true">
+        <createTable tableName="TAXON">
+            <column name="ID" type="${long.type}" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="PARENT_ID" type="${long.type}" />
+            <column name="TAXONOMIC_RANK" type="${normal.string.type}"/>
+            <column name="LATIN_NAME" type="${normal.string.type}"/>
+            <column name="ENGLISH_NAME" type="${normal.string.type}"/>
+            <column name="GERMAN_NAME" type="${normal.string.type}"/>
+            <column name="CZECH_NAME" type="${normal.string.type}"/>
+        </createTable>
+
+        <createTable tableName="BIRD">
+            <column name="ID" type="${long.type}" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="TAXON_ID" type="${long.type}" />
+            <column name="SEX" type="${normal.string.type}"/>
+            <column name="STATE" type="${normal.string.type}"/>
+            <column name="NEST_ID" type="${long.type}"/>
+            <column name="LAYED" type="${date}"/>
+            <column name="HATCHED" type="${date}"/>
+            <column name="MUTATION" type="${normal.string.type}"/>
+            <column name="IDENTIFICATION" type="${normal.string.type}"/>
+            <column name="NAME" type="${normal.string.type}"/>
+            <column name="OWNER_ID" type="${long.type}"/>
+            <column name="NOTE" type="${text.type}"/>
+        </createTable>
+
+        <createTable tableName="CONTACT">
+            <column name="ID" type="${long.type}" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="FIRST_NAME" type="${normal.string.type}" />
+            <column name="LAST_NAME" type="${normal.string.type}"/>
+            <column name="EMAIL" type="${normal.string.type}"/>
+            <column name="PHONE" type="${normal.string.type}"/>
+            <column name="NOTE" type="${text.type}"/>
+        </createTable>
+
+        <createTable tableName="PAIR">
+            <column name="ID" type="${long.type}" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="MALE_ID" type="${long.type}" />
+            <column name="FEMALE_ID" type="${long.type}"/>
+            <column name="DATE_FROM" type="${date}"/>
+            <column name="DATE_TO" type="${date}"/>
+            <column name="NOTE" type="${text.type}"/>
+        </createTable>
+
+        <createTable tableName="NEST">
+            <column name="ID" type="${long.type}" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="PAIR_ID" type="${long.type}" />
+            <column name="DATE_STARTED" type="${date}"/>
+            <column name="NOTE" type="${text.type}"/>
+        </createTable>
+
+        <createTable tableName="WEIGHT_RECORD">
+            <column name="ID" type="${long.type}" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="BIRD_ID" type="${long.type}" />
+            <column name="DATE" type="${date}"/>
+            <column name="WEIGHT" type="${decimal.type}"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="TAXON" baseColumnNames="PARENT_ID" constraintName="FK_TAXON_PARENT" referencedTableName="TAXON" referencedColumnNames="ID" />
+        <addForeignKeyConstraint baseTableName="BIRD" baseColumnNames="TAXON_ID" constraintName="FK_BIRD_TAXON" referencedTableName="TAXON" referencedColumnNames="ID" />
+        <addForeignKeyConstraint baseTableName="BIRD" baseColumnNames="NEST_ID" constraintName="FK_BIRD_NEST" referencedTableName="NEST" referencedColumnNames="ID" />
+        <addForeignKeyConstraint baseTableName="BIRD" baseColumnNames="OWNER_ID" constraintName="FK_BIRD_CONTACT" referencedTableName="CONTACT" referencedColumnNames="ID" />
+        <addForeignKeyConstraint baseTableName="PAIR" baseColumnNames="MALE_ID" constraintName="FK_PAIR_MALE" referencedTableName="BIRD" referencedColumnNames="ID" />
+        <addForeignKeyConstraint baseTableName="PAIR" baseColumnNames="FEMALE_ID" constraintName="FK_PAIR_FEMALE" referencedTableName="BIRD" referencedColumnNames="ID" />
+        <addForeignKeyConstraint baseTableName="NEST" baseColumnNames="PAIR_ID" constraintName="FK_NEST_PAIR" referencedTableName="PAIR" referencedColumnNames="ID" />
+        <addForeignKeyConstraint baseTableName="WEIGHT_RECORD" baseColumnNames="BIRD_ID" constraintName="FK_WEIGHT_RECORD_BIRD" referencedTableName="BIRD" referencedColumnNames="ID"/>
+    </changeSet>
+
+
+
+</databaseChangeLog>

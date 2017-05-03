@@ -11,6 +11,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import cz.kea.api.model.Bird;
 import cz.kea.api.model.Nest;
@@ -32,7 +34,7 @@ public class NestEntity implements Nest {
     @JoinColumn(name = "PAIR_ID")
     private Pair pair;
 
-    @Column(name = "DATE")
+    @Column(name = "DATE_STARTED")
     private LocalDate date;
 
     @OneToMany(targetEntity = BirdEntity.class, mappedBy = "nest")

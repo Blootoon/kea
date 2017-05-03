@@ -24,6 +24,7 @@
                 <prop key="hibernate.show_sql">${db.sql.show}</prop>
                 <prop key="hibernate.format_sql">${db.sql.format}</prop>
                 <prop key="hibernate.jdbc.batch_size">${db.jdbc.batch_size}</prop>
+                <prop key="hibernate.default_schema">${db.default_schema}</prop>
             </props>
         </property>
     </bean>

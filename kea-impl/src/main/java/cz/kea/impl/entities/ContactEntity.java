@@ -25,16 +25,16 @@ public class ContactEntity implements Contact {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "FIRST_NAME", length = 64)
+    @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @Column(name = "LAST_NAME", length = 64)
+    @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "EMAIL", length = 64)
+    @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "PHONE", length = 64)
+    @Column(name = "PHONE")
     private String phone;
 
     @OneToMany(targetEntity = BirdEntity.class, mappedBy = "owner")

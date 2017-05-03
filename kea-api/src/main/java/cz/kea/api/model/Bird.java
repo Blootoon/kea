@@ -3,9 +3,7 @@ package cz.kea.api.model;
 import java.time.LocalDate;
 import java.util.List;
 
-import cz.kea.api.enums.Genus;
 import cz.kea.api.enums.Sex;
-import cz.kea.api.enums.Species;
 import cz.kea.api.enums.State;
 
 /**
@@ -13,17 +11,11 @@ import cz.kea.api.enums.State;
  */
 public interface Bird extends Identifiable<Long> {
 
-    Long getId();
-
     void setId(Long id);
 
-    Genus getGenus();
+    Taxon getTaxon();
 
-    void setGenus(Genus genus);
-
-    Species getSpecies();
-
-    void setSpecies(Species species);
+    void setTaxon(Taxon species);
 
     Sex getSex();
 

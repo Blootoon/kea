@@ -1,5 +1,6 @@
 package cz.kea.impl.entities;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -9,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import cz.kea.api.model.Bird;
 import cz.kea.api.model.WeightRecord;
@@ -33,12 +36,12 @@ public class WeightRecordEntity implements WeightRecord {
     private LocalDate date;
 
     @Column(name = "WEIGHT")
-    private double weight;
+    private BigDecimal weight;
 
     public WeightRecordEntity() {
     }
 
-    public WeightRecordEntity(Bird bird, LocalDate date, double weight) {
+    public WeightRecordEntity(Bird bird, LocalDate date, BigDecimal weight) {
         this.bird = bird;
         this.date = date;
         this.weight = weight;
@@ -68,11 +71,11 @@ public class WeightRecordEntity implements WeightRecord {
         this.date = date;
     }
 
-    public double getWeight() {
+    public BigDecimal getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(BigDecimal weight) {
         this.weight = weight;
     }
 

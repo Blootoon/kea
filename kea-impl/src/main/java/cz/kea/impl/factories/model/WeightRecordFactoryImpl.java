@@ -1,5 +1,6 @@
 package cz.kea.impl.factories.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import cz.kea.api.factories.model.WeightRecordFactory;
@@ -18,7 +19,7 @@ public class WeightRecordFactoryImpl implements WeightRecordFactory {
     }
 
     @Override
-    public WeightRecord createWeightRecord(Bird bird, LocalDate date, double weight) {
+    public WeightRecord createWeightRecord(Bird bird, LocalDate date, BigDecimal weight) {
         return new WeightRecordEntity(bird, date, weight);
     }
 }

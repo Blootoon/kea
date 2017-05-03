@@ -8,8 +8,6 @@ import java.util.List;
  */
 public interface Pair extends Identifiable<Long> {
 
-    Long getId();
-
     void setId(Long id);
 
     Bird getMale();

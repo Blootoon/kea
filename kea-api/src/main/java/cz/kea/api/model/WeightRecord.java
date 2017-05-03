@@ -1,13 +1,12 @@
 package cz.kea.api.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
  * @author Jakub Jaros (jakub.jaros@ibacz.eu)
  */
 public interface WeightRecord extends Identifiable<Long> {
-
-    Long getId();
 
     void setId(Long id);
 
@@ -19,8 +18,8 @@ public interface WeightRecord extends Identifiable<Long> {
 
     void setDate(LocalDate date);
 
-    double getWeight();
+    BigDecimal getWeight();
 
-    void setWeight(double weight);
+    void setWeight(BigDecimal weight);
 
 }

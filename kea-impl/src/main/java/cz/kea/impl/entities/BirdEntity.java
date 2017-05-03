@@ -2,7 +2,6 @@ package cz.kea.impl.entities;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,13 +14,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import cz.kea.api.enums.Genus;
 import cz.kea.api.enums.Sex;
-import cz.kea.api.enums.Species;
 import cz.kea.api.enums.State;
 import cz.kea.api.model.Bird;
 import cz.kea.api.model.Contact;
 import cz.kea.api.model.Nest;
+import cz.kea.api.model.Taxon;
 import cz.kea.api.model.WeightRecord;
 
 /**
@@ -36,20 +34,16 @@ public class BirdEntity implements Bird {
     @Column(name = "ID")
     private Long id;
 
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "GENUS", length = 64, nullable = false)
-    private Genus genus;
+    @ManyToOne(targetEntity = TaxonEntity.class)
+    @JoinColumn(name = "TAXON_ID")
+    private Taxon taxon;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "SPECIES", length = 128, nullable = false)
-    private Species species;
-
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "SEX", length = 16, nullable = false)
+    @Column(name = "SEX", nullable = false)
     private Sex sex;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "STATE", length = 16, nullable = false)
+    @Column(name = "STATE", nullable = false)
     private State state;
 
     @ManyToOne(targetEntity = NestEntity.class)
@@ -62,13 +56,13 @@ public class BirdEntity implements Bird {
     @Column(name = "HATCHED")
     private LocalDate hatched;
 
-    @Column(name = "MUTATION", length = 64)
+    @Column(name = "MUTATION")
     private String mutation;
 
-    @Column(name = "IDENTIFICATION", length = 64)
+    @Column(name = "IDENTIFICATION")
     private String identification;
 
-    @Column(name = "NAME", length = 64)
+    @Column(name = "NAME")
     private String name;
 
     @ManyToOne(targetEntity = ContactEntity.class)
@@ -82,17 +76,17 @@ public class BirdEntity implements Bird {
     @OneToMany(targetEntity = WeightRecordEntity.class, mappedBy = "bird")
     private List<WeightRecord> weightRecords;
 
-    public BirdEntity(Genus genus, Species species, Sex sex, State state) {
-        this.genus = genus;
-        this.species = species;
+    public BirdEntity() {
+    }
+
+    public BirdEntity(Taxon taxon, Sex sex, State state) {
+        this.taxon = taxon;
         this.sex = sex;
         this.state = state;
     }
 
-    public BirdEntity(Genus genus, Species species, Sex sex, State state, Nest nest, LocalDate layed, LocalDate hatched, String mutation, String identification, String name, Contact owner, String
-        note) {
-        this.genus = genus;
-        this.species = species;
+    public BirdEntity(Taxon taxon, Sex sex, State state, Nest nest, LocalDate layed, LocalDate hatched, String mutation, String identification, String name, Contact owner, String note) {
+        this.taxon = taxon;
         this.sex = sex;
         this.state = state;
         this.nest = nest;
@@ -105,34 +99,32 @@ public class BirdEntity implements Bird {
         this.note = note;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
-    public Genus getGenus() {
-        return genus;
+    @Override
+    public Taxon getTaxon() {
+        return taxon;
     }
 
-    public void setGenus(Genus genus) {
-        this.genus = genus;
+    @Override
+    public void setTaxon(Taxon species) {
+        this.taxon = taxon;
     }
 
-    public Species getSpecies() {
-        return species;
-    }
-
-    public void setSpecies(Species species) {
-        this.species = species;
-    }
-
+    @Override
     public Sex getSex() {
         return sex;
     }
 
+    @Override
     public void setSex(Sex sex) {
         this.sex = sex;
     }
@@ -147,74 +139,92 @@ public class BirdEntity implements Bird {
         this.state = state;
     }
 
+    @Override
     public Nest getNest() {
         return nest;
     }
 
+    @Override
     public void setNest(Nest nest) {
         this.nest = nest;
     }
 
+    @Override
     public LocalDate getLayed() {
         return layed;
     }
 
+    @Override
     public void setLayed(LocalDate layed) {
         this.layed = layed;
     }
 
+    @Override
     public LocalDate getHatched() {
         return hatched;
     }
 
+    @Override
     public void setHatched(LocalDate hatched) {
         this.hatched = hatched;
     }
 
+    @Override
     public String getMutation() {
         return mutation;
     }
 
+    @Override
     public void setMutation(String mutation) {
         this.mutation = mutation;
     }
 
+    @Override
     public String getIdentification() {
         return identification;
     }
 
+    @Override
     public void setIdentification(String identification) {
         this.identification = identification;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
+    @Override
     public Contact getOwner() {
         return owner;
     }
 
+    @Override
     public void setOwner(Contact owner) {
         this.owner = owner;
     }
 
+    @Override
     public String getNote() {
         return note;
     }
 
+    @Override
     public void setNote(String note) {
         this.note = note;
     }
 
+    @Override
     public List<WeightRecord> getWeightRecords() {
         return weightRecords;
     }
 
+    @Override
     public void setWeightRecords(List<WeightRecord> weightRecords) {
         this.weightRecords = weightRecords;
     }
@@ -222,8 +232,7 @@ public class BirdEntity implements Bird {
     @Override
     public String toString() {
         return "BirdEntity{" +
-            "species=" + species +
-            ", genus=" + genus +
+            "taxon=" + taxon +
             ", id=" + id +
             ", sex=" + sex +
             ", identification='" + identification + '\'' +

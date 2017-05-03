@@ -1,5 +1,6 @@
 package cz.kea.api.factories.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import cz.kea.api.model.Bird;
@@ -12,5 +13,5 @@ public interface WeightRecordFactory {
 
     WeightRecord createWeightRecord();
 
-    WeightRecord createWeightRecord(Bird bird, LocalDate date, double weight);
+    WeightRecord createWeightRecord(Bird bird, LocalDate date, BigDecimal weight);
 }

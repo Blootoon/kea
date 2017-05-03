@@ -13,8 +13,9 @@ public enum State {
     WEANED(ADULT, DEAD),
     HATCHED(WEANED, ADULT, DEAD),
     DEAD_EMBRYO,
+    BROKEN,
     UNFERTILIZED,
-    EGG(UNFERTILIZED, DEAD_EMBRYO, HATCHED);
+    EGG(UNFERTILIZED, BROKEN, DEAD_EMBRYO, HATCHED);
 
     private List<State> allowedTransitions;
 

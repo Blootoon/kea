@@ -7,8 +7,6 @@ import java.util.List;
  */
 public interface Contact extends Identifiable<Long> {
 
-    Long getId();
-
     void setId(Long id);
 
     String getFirstName();

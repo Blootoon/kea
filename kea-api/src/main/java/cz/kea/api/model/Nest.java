@@ -8,8 +8,6 @@ import java.util.List;
  */
 public interface Nest extends Identifiable<Long> {
 
-    Long getId();
-
     void setId(Long id);
 
     Pair getPair();
