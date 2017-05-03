@@ -1,4 +1,5 @@
 classes
+!configuration/classes
 atlassian-ide-plugin.xml
 *_sprite*
 target
