@@ -3,8 +3,6 @@ package cz.kea.impl.entities;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -12,8 +10,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import cz.kea.api.enums.TaxonomicRank;
+import cz.kea.api.model.HierarchicalModel;
 import cz.kea.api.model.Taxon;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * @author Jakub Jaros (jakub.jaros@ibacz.eu)
@@ -34,10 +34,6 @@ public class TaxonEntity implements Taxon {
     @OneToMany(targetEntity = TaxonEntity.class, mappedBy = "parent")
     private List<Taxon> children;
 
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "TAXONOMIC_RANK")
-    private TaxonomicRank taxonomicRank;
-
     @Column(name = "LATIN_NAME")
     private String latinName;
 
@@ -53,9 +49,8 @@ public class TaxonEntity implements Taxon {
     public TaxonEntity() {
     }
 
-    public TaxonEntity(Taxon parent, TaxonomicRank taxonomicRank, String latinName, String englishName, String germanName, String czechName) {
+    public TaxonEntity(Taxon parent, String latinName, String englishName, String germanName, String czechName) {
         this.parent = parent;
-        this.taxonomicRank = taxonomicRank;
         this.latinName = latinName;
         this.englishName = englishName;
         this.germanName = germanName;
@@ -78,8 +73,8 @@ public class TaxonEntity implements Taxon {
     }
 
     @Override
-    public void setParent(Taxon parent) {
-        this.parent = parent;
+    public <T extends HierarchicalModel> void setParent(T parent) {
+        this.parent = (Taxon) parent;
     }
 
     @Override
@@ -88,18 +83,8 @@ public class TaxonEntity implements Taxon {
     }
 
     @Override
-    public void setChildren(List<Taxon> children) {
-        this.children = children;
-    }
-
-    @Override
-    public TaxonomicRank getTaxonomicRank() {
-        return taxonomicRank;
-    }
-
-    @Override
-    public void setTaxonomicRank(TaxonomicRank taxonomicRank) {
-        this.taxonomicRank = taxonomicRank;
+    public <T extends HierarchicalModel> void setChildren(List<T> children) {
+        this.children = (List<Taxon>) children;
     }
 
     @Override
@@ -142,4 +127,29 @@ public class TaxonEntity implements Taxon {
         this.czechName = czechName;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        TaxonEntity that = (TaxonEntity) o;
+
+        return new EqualsBuilder().append(id, that.id).append(latinName, that.latinName).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(id).append(latinName).toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "TaxonEntity{" +
+            "id=" + id +
+            ", latinName='" + latinName + '\'' +
+            '}';
+    }
 }

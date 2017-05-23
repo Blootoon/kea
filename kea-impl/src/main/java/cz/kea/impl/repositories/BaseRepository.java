@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 
 /**
+ * Base repository.
+ *
  * @author Jakub Jaros (jakub.jaros@ibacz.eu)
  */
 @NoRepositoryBean

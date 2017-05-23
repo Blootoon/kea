@@ -1,0 +1,35 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="user_table" author="jakub.jaros" runInTransaction="true">
+        <createTable tableName="USERS">
+            <column name="ID" type="${long.type}" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="FIRST_NAME" type="${normal.string.type}"/>
+            <column name="LAST_NAME" type="${normal.string.type}"/>
+            <column name="EMAIL" type="${normal.string.type}"/>
+            <column name="PHONE" type="${normal.string.type}"/>
+            <column name="PASSWORD" type="${normal.string.type}"/>
+            <column name="LAST_LOGIN" type="${timestamp}"/>
+            <column name="LAST_LOGIN_ATTEMPT" type="${timestamp}"/>
+            <column name="FAILED_ATTEMPTS" type="${int.type}"/>
+            <column name="LOCKED" type="${boolean.type}"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="init_admin_user" author="jakub.jaros">
+        <insert tableName="USERS">
+            <column name="ID">0</column>
+            <column name="FIRST_NAME">Admin</column>
+            <column name="LAST_NAME">Admin</column>
+            <column name="EMAIL">admin@admin.com</column>
+            <column name="PASSWORD">21232f297a57a5a743894a0e4a801fc3</column>
+            <column name="FAILED_ATTEMPTS">0</column>
+            <column name="LOCKED">0</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -1,6 +1,5 @@
 package cz.kea.api.factories.model;
 
-import cz.kea.api.enums.TaxonomicRank;
 import cz.kea.api.model.Taxon;
 
 /**
@@ -10,5 +9,5 @@ public interface TaxonFactory {
 
     Taxon createTaxon();
 
-    Taxon createTaxon(Taxon parent, TaxonomicRank taxonomicRank, String latinName, String englishName, String germanName, String czechName);
+    Taxon createTaxon(Taxon parent, String latinName, String englishName, String germanName, String czechName);
 }

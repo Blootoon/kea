@@ -1,10 +1,12 @@
 package cz.kea.impl.services;
 
 import cz.kea.api.model.Taxon;
+import cz.kea.api.services.BaseHierarchicalService;
 import cz.kea.api.services.TaxonService;
 import cz.kea.impl.entities.TaxonEntity;
 import cz.kea.impl.factories.specifications.SpecificationFactory;
 import cz.kea.impl.factories.specifications.TaxonSpecificationFactory;
+import cz.kea.impl.repositories.BaseHierarchicalRepository;
 import cz.kea.impl.repositories.BaseRepository;
 import cz.kea.impl.repositories.TaxonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class TaxonServiceImpl extends BaseServiceImpl<Taxon, Long> implements TaxonService {
+public class TaxonServiceImpl extends BaseHierarchicalServiceImpl<Taxon, Long> implements TaxonService {
 
     @Autowired
     private TaxonRepository taxonRepository;
@@ -25,7 +27,7 @@ public class TaxonServiceImpl extends BaseServiceImpl<Taxon, Long> implements Ta
     private TaxonSpecificationFactory taxonSpecificationFactory;
 
     @Override
-    protected BaseRepository<TaxonEntity, Long> getRepository() {
+    protected BaseHierarchicalRepository<TaxonEntity, Long> getRepository() {
         return taxonRepository;
     }
 

@@ -26,8 +26,22 @@
         <property name="password" value="${db.jdbc.password}"/>
     </bean>
 
+    <bean id="dataSourceInitializer" class="org.springframework.jdbc.datasource.init.DataSourceInitializer">
+        <property name="dataSource" ref="dataSource" />
+        <property name="databasePopulator">
+            <bean class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
+                <property name="continueOnError" value="false" />
+                <property name="scripts">
+                    <list>
+                        <value>classpath:sql/create-schema.sql</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
     <!--Override entityManagerFactory from context to depend on hsqlSchemaCreator -->
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <bean id="entityManagerFactory" depends-on="dataSourceInitializer" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="persistenceProvider" ref="hibernatePersistence"/>
         <property name="jpaProperties" ref="jpaProperties" />

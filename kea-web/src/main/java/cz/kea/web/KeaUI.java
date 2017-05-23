@@ -18,6 +18,8 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import cz.kea.web.components.NavigationBar;
+import cz.kea.web.views.error.ErrorView;
+import cz.kea.web.views.login.LoginView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.ContextLoaderListener;

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
  * @author Jakub Jaros (jakub.jaros@ibacz.eu)
  */
 @Repository
-public interface TaxonRepository extends BaseRepository<TaxonEntity, Long> {
+public interface TaxonRepository extends BaseHierarchicalRepository<TaxonEntity, Long> {
 }

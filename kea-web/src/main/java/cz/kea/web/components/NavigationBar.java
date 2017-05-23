@@ -3,14 +3,15 @@ package cz.kea.web.components;
 import javax.annotation.PostConstruct;
 
 import com.vaadin.spring.annotation.UIScope;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.MenuBar;
-import cz.kea.web.views.birds.BirdsView;
+import cz.kea.api.model.User;
+import cz.kea.web.views.bird.BirdGridView;
 import cz.kea.web.views.DefaultView;
-import cz.kea.web.views.taxonomy.TaxonomyView;
+import cz.kea.web.views.contact.ContactGridView;
+import cz.kea.web.views.login.LoginView;
+import cz.kea.web.views.pair.PairGridView;
+import cz.kea.web.views.taxon.TaxonTreeGridView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 /**
@@ -25,10 +26,39 @@ public class NavigationBar extends MenuBar {
 
     @PostConstruct
     public void init() {
-        addItem(messageSource.get("home-view", getLocale()), (e) -> getUI().getNavigator().navigateTo(DefaultView.VIEW_NAME));
-        addItem(messageSource.get("birds-view", getLocale()), (e) -> getUI().getNavigator().navigateTo(BirdsView.VIEW_NAME));
+        addItem(messageSource.get("homepage", getLocale()), e -> getUI().getNavigator().navigateTo(DefaultView.VIEW_NAME));
+        addItem(messageSource.get("birds", getLocale()), e -> getUI().getNavigator().navigateTo(BirdGridView.VIEW_NAME));
+        addItem(messageSource.get("pairs", getLocale()), e -> getUI().getNavigator().navigateTo(PairGridView.VIEW_NAME));
 
         MenuItem dictionaries = addItem(messageSource.get("dictionaries", getLocale()), null);
-        dictionaries.addItem(messageSource.get("taxonomy", getLocale()), (e) -> getUI().getNavigator().navigateTo(TaxonomyView.VIEW_NAME));
+        dictionaries.addItem(messageSource.get("contacts", getLocale()), e -> getUI().getNavigator().navigateTo(ContactGridView.VIEW_NAME));
+        dictionaries.addItem(messageSource.get("taxonomy", getLocale()), e -> getUI().getNavigator().navigateTo(TaxonTreeGridView.VIEW_NAME));
+
+//        User user = getSession().getAttribute(User.class);
+//        if (user != null) {
+//            addUserMenu(user);
+//        }
+    }
+
+    /**
+     * Creates user's menu item.
+     * @param user
+     * @return
+     */
+    private void addUserMenu(User user) {
+        MenuItem userMenu = addItem(user.getFullName(), null);
+        userMenu.addItem(messageSource.get("account", getLocale()), null);
+        userMenu.addSeparator();
+        userMenu.addItem(messageSource.get("logout", getLocale()), e -> logout());
+    }
+
+    /**
+     * Handles logout action.
+     */
+    private void logout() {
+        // close session
+        getSession().close();
+        // and navigate to login view
+        getUI().getNavigator().navigateTo(LoginView.VIEW_NAME);
     }
 }

@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import cz.kea.api.model.Bird;
 import cz.kea.api.model.Contact;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.FilterJoinTables;
 
 /**
@@ -117,6 +118,11 @@ public class ContactEntity implements Contact {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @Override
+    public String getFullName() {
+        return StringUtils.join(new String[]{firstName, lastName}, StringUtils.SPACE).trim();
     }
 
     @Override

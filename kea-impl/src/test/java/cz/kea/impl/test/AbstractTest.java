@@ -13,8 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
     "classpath:test-spring-context/test-application-context.xml",
-    "classpath:test-spring-context/database.xml",
-    "classpath:spring-context/jpa.xml",
+    "classpath:test-spring-context/database.xml", "classpath:spring-context/kea-jpa.xml",
 })
 @Transactional
 public abstract class AbstractTest {

@@ -64,7 +64,10 @@
     <property name="timestamp" value="timestamp" dbms="mysql"/>
     <property name="boolean.type" value="tinyint(1)" dbms="mysql"/>
     <property name="text.type" value="text" dbms="mysql"/>
-    
+
+    <!-- Changelogs -->
     <include file="db-changelog-201704261952.xml" relativeToChangelogFile="true"/>
+    <include file="db-changelog-201705182130.xml" relativeToChangelogFile="true"/>
+    <include file="db-changelog-201705231000.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

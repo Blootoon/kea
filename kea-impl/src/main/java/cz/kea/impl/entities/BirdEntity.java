@@ -115,7 +115,7 @@ public class BirdEntity implements Bird {
     }
 
     @Override
-    public void setTaxon(Taxon species) {
+    public void setTaxon(Taxon taxon) {
         this.taxon = taxon;
     }
 

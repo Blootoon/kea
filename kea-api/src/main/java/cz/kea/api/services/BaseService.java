@@ -10,6 +10,8 @@ import cz.kea.api.utils.Order;
 import cz.kea.api.utils.Page;
 
 /**
+ * Base service interface for common repository operations.
+ *
  * @author Jakub Jaros (jakub.jaros@ibacz.eu)
  */
 public interface BaseService<T extends Identifiable<ID>, ID extends Serializable> {
@@ -24,23 +26,43 @@ public interface BaseService<T extends Identifiable<ID>, ID extends Serializable
 
     T findOne(ID id);
 
+    T findOne(ID id, boolean initDependencies);
+
     T findOne(Map<Filter, Object> filter);
+
+    T findOne(Map<Filter, Object> filter, boolean initDependencies);
 
     List<T> findAll();
 
+    List<T> findAll(boolean initDependencies);
+
     List<T> findAll(Order... orders);
+
+    List<T> findAll(Order[] orders, boolean initDependencies);
 
     Page<T> findAll(int offset, int limit);
 
+    Page<T> findAll(int offset, int limit, boolean initDependencies);
+
     Page<T> findAll(int offset, int limit, Order... orders);
+
+    Page<T> findAll(int offset, int limit, Order[] orders, boolean initDependencies);
 
     List<T> findAll(Map<Filter, Object> filter);
 
-    Page<T> findAll(Map<Filter, Object> Filter, int offset, int limit);
+    List<T> findAll(Map<Filter, Object> filter, boolean initDependencies);
 
-    List<T> findAll(Map<Filter, Object> Filter, Order... orders);
+    Page<T> findAll(Map<Filter, Object> filter, int offset, int limit);
 
-    Page<T> findAll(Map<Filter, Object> Filter, int offset, int limit, Order... orders);
+    Page<T> findAll(Map<Filter, Object> filter, int offset, int limit, boolean initDependencies);
+
+    List<T> findAll(Map<Filter, Object> filter, Order... orders);
+
+    List<T> findAll(Map<Filter, Object> filter, Order[] orders, boolean initDependencies);
+
+    Page<T> findAll(Map<Filter, Object> filter, int offset, int limit, Order... orders);
+
+    Page<T> findAll(Map<Filter, Object> filter, int offset, int limit, Order[] orders, boolean initDependencies);
 
     long count();
 

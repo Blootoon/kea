@@ -31,5 +31,7 @@ public interface Contact extends Identifiable<Long> {
 
     String getNote();
 
-    public void setNote(String note);
+    void setNote(String note);
+
+    String getFullName();
 }
