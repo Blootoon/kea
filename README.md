@@ -12,8 +12,10 @@
     \-- <engine>
       \-- <hostname>
         +-- configuration
-        | +-- database.properties
-        | +-- kea.properties
-        | \-- log4j2.xml
+        | +-- classes
+        | | +-- database.properties
+        | | +-- kea.properties
+        | | \-- log4j2.xml
+        | \-- lib
         \-- <appName>.xml
 ```
