@@ -1,4 +1,4 @@
-package cz.kea.web.components;
+package cz.kea.web.components.helpers;
 
 import cz.kea.api.model.Taxon;
 import liquibase.util.StringUtils;

@@ -37,6 +37,11 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
     private ApplicationConfiguration applicationConfiguration;
 
     @Override
+    public User create() {
+        return new UserEntity();
+    }
+
+    @Override
     public User findByEmail(String email) {
         Validate.notNull(email, "Email should not be null.");
 

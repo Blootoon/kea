@@ -1,4 +1,4 @@
-package cz.kea.web.dataproviders;
+package cz.kea.web.components.dataproviders;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -12,7 +12,7 @@ import cz.kea.api.model.HierarchicalModel;
 import cz.kea.api.services.BaseHierarchicalService;
 import cz.kea.api.utils.Filter;
 import cz.kea.api.utils.Order;
-import cz.kea.web.converters.OrderConverter;
+import cz.kea.web.components.converters.OrderConverter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

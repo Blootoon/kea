@@ -24,6 +24,12 @@ public class PairServiceImpl extends BaseServiceImpl<Pair, Long> implements Pair
     @Autowired
     private PairSpecificationFactory pairSpecificationFactory;
 
+    @Override
+    public Pair create() {
+        return new PairEntity();
+    }
+
+    @Override
     protected BaseRepository<PairEntity, Long> getRepository() {
         return pairRepository;
     }

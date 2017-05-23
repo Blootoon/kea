@@ -24,6 +24,12 @@ public class WeightRecordServiceImpl extends BaseServiceImpl<WeightRecord, Long>
     @Autowired
     private WeightRecordSpecificationFactory weightRecordSpecificationFactory;
 
+    @Override
+    public WeightRecord create() {
+        return new WeightRecordEntity();
+    }
+
+    @Override
     protected BaseRepository<WeightRecordEntity, Long> getRepository() {
         return weightRecordRepository;
     }

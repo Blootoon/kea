@@ -1,4 +1,4 @@
-package cz.kea.web.components;
+package cz.kea.web.components.helpers;
 
 import cz.kea.api.enums.Sex;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,8 @@
-package cz.kea.web.components;
+package cz.kea.web.components.helpers;
 
 import java.util.Locale;
 
+import cz.kea.web.components.KeaMessageSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

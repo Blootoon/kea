@@ -20,16 +20,15 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import cz.kea.api.enums.Sex;
 import cz.kea.api.enums.State;
-import cz.kea.api.factories.model.BirdFactory;
 import cz.kea.api.model.Bird;
 import cz.kea.api.model.Contact;
 import cz.kea.api.model.Nest;
 import cz.kea.api.model.Taxon;
 import cz.kea.api.services.BirdService;
 import cz.kea.web.components.KeaMessageSource;
-import cz.kea.web.dataproviders.ContactDataProvider;
-import cz.kea.web.dataproviders.NestDataProvider;
-import cz.kea.web.dataproviders.TaxonDataProvider;
+import cz.kea.web.components.dataproviders.ContactDataProvider;
+import cz.kea.web.components.dataproviders.NestDataProvider;
+import cz.kea.web.components.dataproviders.TaxonDataProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,9 +46,6 @@ public class BirdFormView extends VerticalLayout implements View {
 
     @Autowired
     private BirdService birdService;
-
-    @Autowired
-    private BirdFactory birdFactory;
 
     @Autowired
     private KeaMessageSource messageSource;
@@ -147,7 +143,7 @@ public class BirdFormView extends VerticalLayout implements View {
 
             bean = birdService.findOne(id);
         } else {
-            bean = birdFactory.createBird();
+            bean = birdService.create();
         }
 
         binder.readBean(bean);

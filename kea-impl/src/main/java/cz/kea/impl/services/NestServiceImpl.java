@@ -25,6 +25,11 @@ public class NestServiceImpl extends BaseServiceImpl<Nest, Long> implements Nest
     private NestSpecificationFactory nestSpecificationFactory;
 
     @Override
+    public Nest create() {
+        return new NestEntity();
+    }
+
+    @Override
     protected BaseRepository<NestEntity, Long> getRepository() {
         return nestRepository;
     }

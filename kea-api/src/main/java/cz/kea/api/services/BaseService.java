@@ -16,6 +16,8 @@ import cz.kea.api.utils.Page;
  */
 public interface BaseService<T extends Identifiable<ID>, ID extends Serializable> {
 
+    T create();
+
     <E extends T> E save(E model);
 
     <E extends T> E saveAndFlush(E model);
@@ -67,5 +69,4 @@ public interface BaseService<T extends Identifiable<ID>, ID extends Serializable
     long count();
 
     long count(Map<Filter, Object> filter);
-
 }

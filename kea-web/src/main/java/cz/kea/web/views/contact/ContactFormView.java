@@ -13,7 +13,6 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
-import cz.kea.api.factories.model.ContactFactory;
 import cz.kea.api.model.Contact;
 import cz.kea.api.services.ContactService;
 import cz.kea.web.components.KeaMessageSource;
@@ -34,9 +33,6 @@ public class ContactFormView extends VerticalLayout implements View {
 
     @Autowired
     private ContactService contactService;
-
-    @Autowired
-    private ContactFactory contactFactory;
 
     @Autowired
     private KeaMessageSource messageSource;
@@ -91,7 +87,7 @@ public class ContactFormView extends VerticalLayout implements View {
 
             bean = contactService.findOne(id);
         } else {
-            bean = contactFactory.createContact();
+            bean = contactService.create();
         }
 
         binder.readBean(bean);

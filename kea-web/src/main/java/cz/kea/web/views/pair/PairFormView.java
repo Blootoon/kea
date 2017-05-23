@@ -18,13 +18,12 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 import cz.kea.api.enums.State;
-import cz.kea.api.factories.model.PairFactory;
 import cz.kea.api.model.Bird;
 import cz.kea.api.model.Pair;
 import cz.kea.api.services.PairService;
-import cz.kea.web.components.BirdHelper;
+import cz.kea.web.components.helpers.BirdHelper;
 import cz.kea.web.components.KeaMessageSource;
-import cz.kea.web.dataproviders.BirdDataProvider;
+import cz.kea.web.components.dataproviders.BirdDataProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,9 +41,6 @@ public class PairFormView extends VerticalLayout implements View {
 
     @Autowired
     private PairService pairService;
-
-    @Autowired
-    private PairFactory pairFactory;
 
     @Autowired
     private KeaMessageSource messageSource;
@@ -114,7 +110,7 @@ public class PairFormView extends VerticalLayout implements View {
 
             bean = pairService.findOne(id);
         } else {
-            bean = pairFactory.createPair();
+            bean = pairService.create();
         }
 
         binder.readBean(bean);

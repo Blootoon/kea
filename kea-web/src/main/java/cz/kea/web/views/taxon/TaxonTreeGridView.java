@@ -16,7 +16,7 @@ import com.vaadin.ui.VerticalLayout;
 import cz.kea.api.model.Taxon;
 import cz.kea.api.services.TaxonService;
 import cz.kea.web.components.KeaMessageSource;
-import cz.kea.web.dataproviders.TaxonHierarchicalDataProvider;
+import cz.kea.web.components.dataproviders.TaxonHierarchicalDataProvider;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

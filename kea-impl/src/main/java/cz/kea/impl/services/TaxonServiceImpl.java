@@ -27,6 +27,11 @@ public class TaxonServiceImpl extends BaseHierarchicalServiceImpl<Taxon, Long> i
     private TaxonSpecificationFactory taxonSpecificationFactory;
 
     @Override
+    public Taxon create() {
+        return new TaxonEntity();
+    }
+
+    @Override
     protected BaseHierarchicalRepository<TaxonEntity, Long> getRepository() {
         return taxonRepository;
     }

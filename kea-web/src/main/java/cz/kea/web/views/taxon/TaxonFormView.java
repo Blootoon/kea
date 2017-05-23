@@ -14,12 +14,11 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
-import cz.kea.api.factories.model.TaxonFactory;
 import cz.kea.api.model.Taxon;
 import cz.kea.api.services.TaxonService;
 import cz.kea.web.components.KeaMessageSource;
-import cz.kea.web.components.TaxonHelper;
-import cz.kea.web.dataproviders.TaxonDataProvider;
+import cz.kea.web.components.helpers.TaxonHelper;
+import cz.kea.web.components.dataproviders.TaxonDataProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
@@ -41,9 +40,6 @@ public class TaxonFormView extends VerticalLayout implements View {
 
     @Autowired
     private TaxonService taxonService;
-
-    @Autowired
-    private TaxonFactory taxonFactory;
 
     @Autowired
     private TaxonDataProvider taxonDataProvider;
@@ -112,15 +108,15 @@ public class TaxonFormView extends VerticalLayout implements View {
                 bean = taxonService.findOne(id, true);
             } else if (params.length == 2 && params[0].equals(ACTION_NEW)) {
                 long parentId = Long.parseLong(params[1]);
-                bean = taxonFactory.createTaxon();
+                bean = taxonService.create();
                 bean.setParent(taxonService.findOne(parentId));
             } else if (params.length == 1 && params[0].equals(ACTION_NEW)) {
-                bean = taxonFactory.createTaxon();
+                bean = taxonService.create();
             } else {
                 throw new IllegalStateException("Could not parse request URI.");
             }
         } else {
-            bean = taxonFactory.createTaxon();
+            bean = taxonService.create();
         }
 
         binder.readBean(bean);

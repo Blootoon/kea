@@ -27,13 +27,8 @@ public class BirdServiceImpl extends BaseServiceImpl<Bird, Long> implements Bird
     private BirdSpecificationFactory birdSpecificationFactory;
 
     @Override
-    protected BaseRepository<BirdEntity, Long> getRepository() {
-        return birdRepository;
-    }
-
-    @Override
-    protected SpecificationFactory<BirdEntity, Long> getSpecificationFactory() {
-        return birdSpecificationFactory;
+    public Bird create() {
+        return new BirdEntity();
     }
 
     @Override
@@ -49,5 +44,15 @@ public class BirdServiceImpl extends BaseServiceImpl<Bird, Long> implements Bird
         } else {
             throw new IllegalArgumentException(String.format("Attempt to perform illegal state change from %s to %s.", bird.getState(), newState));
         }
+    }
+
+    @Override
+    protected BaseRepository<BirdEntity, Long> getRepository() {
+        return birdRepository;
+    }
+
+    @Override
+    protected SpecificationFactory<BirdEntity, Long> getSpecificationFactory() {
+        return birdSpecificationFactory;
     }
 }

@@ -13,7 +13,7 @@ import com.vaadin.ui.VerticalLayout;
 import cz.kea.api.exceptions.LoginException;
 import cz.kea.api.model.User;
 import cz.kea.api.services.UserService;
-import cz.kea.web.components.DateTimeHelper;
+import cz.kea.web.components.helpers.DateTimeHelper;
 import cz.kea.web.components.KeaMessageSource;
 import cz.kea.web.views.DefaultView;
 import org.apache.commons.lang3.StringUtils;

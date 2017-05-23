@@ -2,7 +2,6 @@ package cz.kea.impl.services;
 
 import cz.kea.api.enums.Sex;
 import cz.kea.api.enums.State;
-import cz.kea.api.factories.model.BirdFactory;
 import cz.kea.api.model.Bird;
 import cz.kea.api.services.BirdService;
 import cz.kea.impl.test.AbstractTest;
@@ -11,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Jakub Jaros (jakub.jaros@ibacz.eu)
@@ -20,9 +19,6 @@ public class BirdServiceTest extends AbstractTest {
 
     @Autowired
     private BirdService birdService;
-
-    @Autowired
-    private BirdFactory birdFactory;
 
     @Before
     public void setUp() {
@@ -36,7 +32,12 @@ public class BirdServiceTest extends AbstractTest {
 
     @Test
     public void testSave() {
-        Bird bird = birdFactory.createBird(null, Sex.MALE, State.ADULT, null, null, null, null, "CZ 15 1234", "Toníček", null, "Poznámka");
+        Bird bird = birdService.create();
+        bird.setSex(Sex.MALE);
+        bird.setState(State.ADULT);
+        bird.setIdentification("CZ 15 1234");
+        bird.setName("Toníček");
+        bird.setNote("Poznámka");
         Bird savedBird = birdService.save(bird);
 
         assertEquals(bird.getTaxon(), savedBird.getTaxon());
@@ -48,7 +49,9 @@ public class BirdServiceTest extends AbstractTest {
 
     @Test
     public void testChangeStateSuccess() {
-        Bird bird = birdFactory.createBird(null, Sex.MALE, State.EGG);
+        Bird bird = birdService.create();
+        bird.setSex(Sex.MALE);
+        bird.setState(State.EGG);
         Bird savedBird = birdService.save(bird);
 
         Bird changedStateBird = birdService.changeState(savedBird, State.HATCHED);
@@ -58,7 +61,9 @@ public class BirdServiceTest extends AbstractTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testChangeStateFail() {
-        Bird bird = birdFactory.createBird(null, Sex.MALE, State.EGG);
+        Bird bird = birdService.create();
+        bird.setSex(Sex.MALE);
+        bird.setState(State.EGG);
         Bird savedBird = birdService.save(bird);
 
         birdService.changeState(savedBird, State.ADULT);

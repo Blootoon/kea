@@ -1,10 +1,11 @@
-package cz.kea.web.components;
+package cz.kea.web.components.ui;
 
 import javax.annotation.PostConstruct;
 
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.MenuBar;
 import cz.kea.api.model.User;
+import cz.kea.web.components.KeaMessageSource;
 import cz.kea.web.views.bird.BirdGridView;
 import cz.kea.web.views.DefaultView;
 import cz.kea.web.views.contact.ContactGridView;

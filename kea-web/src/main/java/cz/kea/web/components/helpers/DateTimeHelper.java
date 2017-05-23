@@ -1,4 +1,4 @@
-package cz.kea.web.components;
+package cz.kea.web.components.helpers;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package cz.kea.web.converters;
+package cz.kea.web.components.converters;
 
 import java.util.List;
 import java.util.stream.Collectors;

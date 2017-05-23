@@ -1,4 +1,4 @@
-package cz.kea.web.dataproviders;
+package cz.kea.web.components.dataproviders;
 
 import cz.kea.api.model.WeightRecord;
 import cz.kea.api.services.BaseService;

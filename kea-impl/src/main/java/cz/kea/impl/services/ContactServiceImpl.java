@@ -24,6 +24,12 @@ public class ContactServiceImpl extends BaseServiceImpl<Contact, Long> implement
     @Autowired
     private ContactSpecificationFactory contactSpecificationFactory;
 
+    @Override
+    public Contact create() {
+        return new ContactEntity();
+    }
+
+    @Override
     protected BaseRepository<ContactEntity, Long> getRepository() {
         return contactRepository;
     }
